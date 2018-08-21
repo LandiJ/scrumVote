@@ -7,7 +7,7 @@ import * as io from "socket.io-client/dist/socket.io";
 export class VoteServiceService {
   constructor() {}
 
-  url = "http://scrumtime.herokuapp.com";
+  url = "https://scrumtime.herokuapp.com";
   socket;
 
   sendVote(vote) {

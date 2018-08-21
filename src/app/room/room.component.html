@@ -1,0 +1,19 @@
+<p>
+  room works!
+</p>
+
+<input type="checkbox" [(ngModel)]="autoReveal">
+<button (click)="clearVotes()">Start Over</button>
+
+<input type="text" [(ngModel)]="vote">
+<button (click)="sendVote()">Add Vote</button>
+<div class="cards tp-wrapper">
+  <div [@flipState]="flip" class="tp-box" *ngFor="let vote of votes">
+    <div class="vote-card tp-box__side tp-box__front">
+      ScrumTime
+    </div>
+    <div class="tp-box__side tp-box__back">{{vote.text}}
+    </div>
+  </div>
+</div>
+<button (click)="toggleFlip()">Reveal Votes</button>

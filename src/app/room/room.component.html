@@ -1,19 +1,32 @@
 <p>
   room works!
 </p>
+<div *ngIf="!userSubmitted">
+  <input type="text" [(ngModel)]="user">
+  <button class="btn btn-secondary" (click)="submitUser()">Submit Name</button>
+</div>
 
-<input type="checkbox" [(ngModel)]="autoReveal">
-<button (click)="clearVotes()">Start Over</button>
+<div *ngIf="userSubmitted">
 
-<input type="text" [(ngModel)]="vote">
-<button (click)="sendVote()">Add Vote</button>
-<div class="cards tp-wrapper">
-  <div [@flipState]="flip" class="tp-box" *ngFor="let vote of votes">
-    <div class="vote-card tp-box__side tp-box__front">
-      ScrumTime
+  <input type="checkbox" [(ngModel)]="autoReveal">
+  <button class="btn btn-secondary" (click)="clearVotes()">Start Over</button>
+
+  <div class="input-group input-group-default mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
     </div>
-    <div class="tp-box__side tp-box__back">{{vote.text}}
+    <input [(ngModel)]="vote.text" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  </div>
+
+  <button class="btn btn-secondary" (click)="sendVote()">Add Vote</button>
+  <div class="cards tp-wrapper">
+    <div [@flipState]="flip" class="tp-box" *ngFor="let vote of votes">
+      <div class="vote-card tp-box__side tp-box__front">
+        {{vote.text.username}}
+      </div>
+      <div class="tp-box__side tp-box__back">{{vote.text.text}}
+      </div>
     </div>
   </div>
+  <button class="btn btn-secondary" (click)="toggleFlip()">Reveal Votes</button>
 </div>
-<button (click)="toggleFlip()">Reveal Votes</button>

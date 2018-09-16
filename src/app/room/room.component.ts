@@ -36,15 +36,18 @@ export class RoomComponent implements OnInit {
   votes = [];
   users: any;
   connection;
-  vote: any;
+  vote: any = { text: "", username: "" };
   flip: string = "inactive";
   autoReveal: any = false;
+  user: any;
+  userSubmitted: any = false;
 
   constructor(public voteService: VoteServiceService) {}
 
   sendVote() {
+    this.vote.username = this.user;
     this.voteService.sendVote(this.vote);
-    this.vote = "";
+    this.vote = {};
   }
 
   ngOnInit() {
@@ -72,6 +75,9 @@ export class RoomComponent implements OnInit {
   toggleFlip() {
     this.flip = this.flip == "inactive" ? "active" : "inactive";
     console.log("FLIPPING");
+  }
+  submitUser() {
+    this.userSubmitted = true;
   }
 
   ngOnDestroy() {
